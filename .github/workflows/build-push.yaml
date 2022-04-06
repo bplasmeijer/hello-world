@@ -34,7 +34,5 @@ jobs:
     
       - name: Build and Push Hello World
         run: |
-          $env:VERSION="latest"
-          $env:REGISTRY="ghcr.io/${{ github.actor }}/hello-world"
-          docker build -t "$REGISTRY:$VERSION" . 
+          docker build -t ghcr.io/bplasmeijer/hello-world:latest . 
           docker-push
