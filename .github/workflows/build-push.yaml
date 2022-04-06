@@ -35,4 +35,4 @@ jobs:
       - name: Build and Push Hello World
         run: |
           docker build -t ghcr.io/bplasmeijer/hello-world:latest . 
-          docker-push
+          docker push ghcr.io/bplasmeijer/hello-world:latest
