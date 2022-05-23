@@ -36,3 +36,25 @@ jobs:
         run: |
           docker build -t ghcr.io/bplasmeijer/hello-world:latest . 
           docker push ghcr.io/bplasmeijer/hello-world:latest
+  
+  # This workflow contains a single job called "build"
+  windows:
+    # The type of runner that the job will run on
+    runs-on: windows-2019
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+    
+      - name: Build and Push Hello World
+        run: |
+          docker build -t ghcr.io/bplasmeijer/hello-world-aspnet:latest ./src/windows-ltsc2019 
+          docker push ghcr.io/bplasmeijer/hello-world-aspnet:latest
